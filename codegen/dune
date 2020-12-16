@@ -1,5 +1,5 @@
 (library
  (name codegen)
- (libraries llvm)
+ (libraries llvm syntax)
  (preprocess
   (pps ppx_deriving.eq)))
