@@ -69,25 +69,25 @@ let codegen_proto = function
           f
 
 let codegen_func = function
-| Ast.Function (proto, body) ->
-  Hashtbl.clear named_values;
-  let the_function = codegen_proto proto in
+  | Ast.Function (proto, body) ->
+    Hashtbl.clear named_values;
+    let the_function = codegen_proto proto in
 
-  (* Create a new basic block to start insertion into. *)
-  let bb = append_block context "entry" the_function in
-  position_at_end bb builder;
+    (* Create a new basic block to start insertion into. *)
+    let bb = append_block context "entry" the_function in
+    position_at_end bb builder;
 
-  try
-    let ret_val = codegen_expr body in
+    try
+      let ret_val = codegen_expr body in
 
-    (* Finish off the function. *)
-    let _ = build_ret ret_val builder in
+      (* Finish off the function. *)
+      let _ = build_ret ret_val builder in
 
-    (* Validate the generated code, checking for consistency. *)
-    (* TODO: このコードは意図的にコメントアウトしているが、多分大事 *)
-    (* Llvm_analysis.assert_valid_function the_function; *)
+      (* Validate the generated code, checking for consistency. *)
+      (* TODO: このコードは意図的にコメントアウトしているが、多分大事 *)
+      (* Llvm_analysis.assert_valid_function the_function; *)
 
-    the_function
-  with e ->
-    delete_function the_function;
-    raise e
+      the_function
+    with e ->
+      delete_function the_function;
+      raise e
