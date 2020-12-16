@@ -9,5 +9,12 @@ let num = digit digit*
 let ws = ['\t' ' ' '\n']
 
 rule token = parse
+  | ws* { token lexbuf }
   | num as n  { NUMBER (int_of_string n) }
-  | ";;" { SEMISEMI }
+  | "+" { PLUS }
+  | "-" { MINUS }
+  | "def" { Def }
+  | "(" { LParen }
+  | ")" { RParen }
+  | ";" { Semi }
+  | id as i { IDENT i }

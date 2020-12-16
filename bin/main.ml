@@ -1,7 +1,11 @@
 open Syntax;;
 open Codegen;;
 
-let main () = Ast.Binary ('+', (Ast.Number 12000.0), (Ast.Number 20.0)) |> codegen_expr |>  Llvm.dump_value ;;
-main () |> print_newline;;
+let main () =
+  while true do
+    print_string "ready> "; flush stdout;
+    let toplevels = Parser.toplevel Lexer.token (Lexing.from_channel stdin) in
+    toplevels |> codegen_toplevel |> Llvm.dump_value |> print_newline
+  done;;
 
-Ast.Function ((Ast.Prototype ("test", [|"y"|])), Ast.Number 12000.0) |> codegen_func |> Llvm.dump_value;;
+main ()

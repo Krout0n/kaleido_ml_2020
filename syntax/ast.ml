@@ -11,7 +11,6 @@ type expr =
   (* variant for function calls. *)
   | Call of string * expr array [@@deriving show, eq]
 
-
 (* proto - This type represents the "prototype" for a function, which captures
 * its name, and its argument names (thus implicitly the number of arguments the
 * function takes). *)
@@ -19,3 +18,7 @@ type proto = Prototype of string * string array [@@deriving show, eq]
 
 (* func - This type represents a function definition itself. *)
 type func = Function of proto * expr [@@deriving show, eq]
+
+type toplevel =
+  | Expr of expr
+  | Func of func

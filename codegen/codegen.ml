@@ -91,3 +91,7 @@ let codegen_func = function
     with e ->
       delete_function the_function;
       raise e
+
+let codegen_toplevel = function
+  | Ast.Expr e -> codegen_expr e
+  | Ast.Func f -> codegen_func f
