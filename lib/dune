@@ -1,0 +1,5 @@
+(library
+ (name kaleido_ml_2020)
+ (libraries llvm)
+ (preprocess
+  (pps ppx_deriving.eq)))
