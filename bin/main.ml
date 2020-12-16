@@ -1,4 +1,5 @@
 open Syntax;;
 open Codegen;;
 
-Ast.Number 10.0 |> codegen_expr;;
+let main () = Ast.Binary ('+', (Ast.Number 12000.0), (Ast.Number 20.0)) |> codegen_expr |>  Llvm.dump_value ;;
+main ()
