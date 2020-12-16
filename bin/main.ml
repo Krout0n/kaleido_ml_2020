@@ -1,4 +1,4 @@
-open Llvm
+(* open Llvm
 
 (* expr - Base type for all expression nodes. *)
 type expr =
@@ -110,4 +110,8 @@ let codegen_func = function
     the_function
   with e ->
     delete_function the_function;
-    raise e
+    raise e *)
+
+open Syntax;;
+
+Ast.show_expr (Ast.Number 10.0) |> print_string

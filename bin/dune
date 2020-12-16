@@ -1,6 +1,6 @@
 (executable
  (public_name kaleido_ml_2020)
  (name main)
- (libraries kaleido_ml_2020 llvm)
+ (libraries syntax)
  (preprocess
   (pps ppx_deriving.eq)))
